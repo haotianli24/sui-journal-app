@@ -18,7 +18,6 @@ public struct Entry has store {
     create_at_ms: u64,
 }
 
-// Change from 'public fun' to 'entry fun'
 entry fun new_journal(title: String, ctx: &mut TxContext) {
     let journal = Journal {
         id: object::new(ctx),
@@ -30,7 +29,6 @@ entry fun new_journal(title: String, ctx: &mut TxContext) {
     transfer::transfer(journal, tx_context::sender(ctx));
 }
 
-// Also update add_entry to be entry fun
 entry fun add_entry(
     journal: &mut Journal, 
     content: String, 
